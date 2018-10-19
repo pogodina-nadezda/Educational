@@ -89,9 +89,6 @@ ev_free$Date_event[88] <- as.Date(ev_free$Last_contact_date[88])
 library("zoo")
 ev_free$Date_event <- as.Date(ev_free$Date_event)
 
-#Считаем промежуток от ТКМ до врмени произошедшего события
-elapsed.time_event <- ev_free$Date_alloTKM %--% ev_free$Date_event
-TKM_event <- round(as.duration(elapsed.time_event) / ddays(1))
 
 #Можно начинать возиться с выживаемостью))####
 library(survival)
@@ -124,18 +121,6 @@ text<-fin_cum(km_fit)
 #Нам нужно рассчитать общую выживаемость в зависимости от времени до ТКМ
 # status==1 принципиальная вещь, которая стоила мне пару часов жизни)) 
 #Инвертирует то, что у врачей живой обозначен 0, а мертвый 1
-km_fit <- survfit(Surv(time_base, status==1) ~ 1, data=surv_data)
-ggsurvplot(km_fit, data = surv_data, size = 1,  
-           linetype = "strata", # change line type by groups
-           palette = c("#fd0166"), # custom color palette
-           conf.int = TRUE, # Add confidence interval 
-           legend.title = "Patients",
-           legend = c(0.1, 0.2),
-           xlab = "Время (мес)")$plot + 
-  ggtitle("Kaplan-Meier survival curve")+
-  theme(legend.text = element_text(size = 14, color = "black"),
-        legend.title = element_text(size = 14, color = "black"))
-
 ggtheme = theme_bw(),
 
 
