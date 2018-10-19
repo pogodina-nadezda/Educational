@@ -1,12 +1,4 @@
-library(dplyr)
-library(ggplot2)
-library(ggfortify)
-library(survival)
-library(readxl)
-library(survMisc)
-library(ggpubr)
-library(magrittr)
-library(survminer)
+
 
 #Загрузим сырые данные от Жени и Оксаны#####
 raw_data <- read_excel(path = "~/Bioinf_project/Autumn_project/Leukemia/data/data_base_IB.xls")
